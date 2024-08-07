@@ -1,0 +1,14 @@
+[
+  {
+    "modid": "suikerawore",
+    "name": "rawOre_on_1.12.2",
+    "version": "1.4.20.1",
+    "mcversion": "1.12.2",
+    "logoFile": "assets/suikerawore/textures/gui/ico.png",
+    "url": "MC百科: https://www.mcmod.cn/class/14517.html",
+    "updateUrl": "Modrinth: https://modrinth.com/mod/rawore_on_1.12.2",
+    "authorList": ["sui_ke"],
+    "description": "为1.12.2添加粗矿；Add rawOre to 1.12.2。",
+    "credits": ""
+  }
+]

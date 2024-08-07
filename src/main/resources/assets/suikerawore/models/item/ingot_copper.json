@@ -1,0 +1,6 @@
+{
+	"parent": "suikerawore:item/_item",
+	"textures": {
+		"layer0": "suikerawore:items/ingot/copper_ingot"
+	}
+}
