@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "suikerawore:blocks/blocks/manganese_block"
+	}
+}
