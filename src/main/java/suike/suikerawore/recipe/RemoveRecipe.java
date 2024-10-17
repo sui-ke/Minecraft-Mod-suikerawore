@@ -93,7 +93,7 @@ public class RemoveRecipe {
                 if (ItemBase.isValidItemStack(itemStack)) {
                     ResourceLocation registryName = itemStack.getItem().getRegistryName();
                     //排除本模组物品
-                    if (registryName != null && !(registryName.getResourceDomain().equals("suikerawore"))) {
+                    if (registryName != null && !(registryName.getNamespace().equals("suikerawore"))) {
                         itemList.add(itemStack);
                     }
                 }

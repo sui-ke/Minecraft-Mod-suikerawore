@@ -42,7 +42,7 @@ public class AddExpandOreDict {
         }
 
         //虚拟人生
-        if (Examine.虚拟人生) {
+        if (Examine.MACID) {
             /*玫瑰金锭*/oreDictAdd("ingotRosegold", Item.getByNameOrId("mca:rose_gold_ingot"));
         }
 

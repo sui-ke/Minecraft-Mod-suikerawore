@@ -62,7 +62,7 @@ dependencies {
     // implementation ('com.google.code.gson:gson:2.8.6') {
     //     transitive = false
     // }
-
+    compileOnly "org.jetbrains:annotations:17.0.0"
     implementation 'curse.maven:had-enough-items-557549:4543375'//jei
     implementation 'curse.maven:crafttweaker-239197:4534504'//crt
     implementation 'curse.maven:future-mc-310059:5626387'//future mc
@@ -85,13 +85,11 @@ dependencies {
     implementation rfg.deobf("curse.maven:cofh-world-271384:2920434")
     implementation rfg.deobf("curse.maven:nuclearcraft-overhauled-336895:5446445")
     implementation rfg.deobf("curse.maven:angry-pixel-the-betweenlands-mod-243363:4479688")
-
+    implementation rfg.deobf("curse.maven:shadowfacts-forgelin-248453:2785465")
     implementation 'curse.maven:hwyla-253449:2568751'
     implementation 'curse.maven:redstone-flux-270789:2920436'
-    implementation rfg.deobf('curse.maven:CTM-267602:2915363')
     implementation 'curse.maven:the-one-probe-245211:2667280'
-    
-    implementation 'curse.maven:mixin-booter-419286:5079135'
+
     implementation 'curse.maven:flux-networks-248020:3178199'
 
     runtimeOnly 'curse.maven:ftb-library-237167:2985811'

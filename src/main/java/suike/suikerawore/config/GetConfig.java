@@ -100,7 +100,7 @@ public class GetConfig {
         if (SuiKe.server) {
             directory = new File(event.getModConfigurationDirectory(), "");
         } else {
-            directory = new File(Minecraft.getMinecraft().mcDataDir, "config");
+            directory = new File(Minecraft.getMinecraft().gameDir, "config");
         }
         
         File configFile = new File(directory, "densemetals.cfg");

@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 import suike.suikerawore.SuiKe;
-import suike.suikerawore.config.ConfigValue;
-import suike.suikerawore.expand.ConflictScreen;
 
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -37,54 +35,64 @@ public class Examine {
     public static boolean TheBetweenlandsID = false;//交错次元
     public static boolean thermalexpansionID = false;//热力膨胀5
     public static boolean VicSWarfareID = false;//维克的现代战争
-    public static boolean 虚拟人生 = false;
+    public static boolean MACID = false;
     public static boolean deeperdepthsID = false;//试炼更新
 
     public static boolean smelt = false;//自动熔炼
 
     //检查是否拥有模组
     public static void examine() {
-        /*jei*/if (Loader.isModLoaded("jei")) {JEIID = true;}
-        /*工业*/if (Loader.isModLoaded("ic2")) {IC2ID = true;}
-        /*工业升级*/if (Loader.isModLoaded("industrialupgrade")) {IC2UpgradeID = true;}
-        /*虚拟人生*/if (Loader.isModLoaded("mca")) {虚拟人生 = true;}
-        /*tetra*/if (Loader.isModLoaded("tetra")) {tetraID = true;}
-        /*冒险漩涡*/if (Loader.isModLoaded("mm")) {MaelstromID = true;}
-        /*未来MC*/if (Loader.isModLoaded("futuremc")) {FuturemcID = true;}
-        /*末影接口*/if (Loader.isModLoaded("enderio")) {enderioID = true;}
-        /*通用机械*/if (Loader.isModLoaded("mekanism")) {MekanismID = true;}
-        /*维克的现代战争*/if (Loader.isModLoaded("mw")) {VicSWarfareID = true;}
-        /*神秘时代*/if (Loader.isModLoaded("thaumcraft")) {thaumcraftID = true;}
-        /*极光幽境*/if (Loader.isModLoaded("theaurorian")) {TheAurorianID = true;}
-        /*铱矿产*/if (Loader.isModLoaded("iridiumsource")) {iridiumsourceID = true;}
-        /*交错次元*/if (Loader.isModLoaded("thebetweenlands")) {TheBetweenlandsID = true;}
-        /*热力膨胀5*/if (Loader.isModLoaded("thermalexpansion")) {thermalexpansionID = true;}
-        /*试炼更新*/if (Loader.isModLoaded("deeperdepths")) {deeperdepthsID = true;}
+        /*jei*/
+        JEIID = Loader.isModLoaded("jei");
+        /*工业*/
+        IC2ID = Loader.isModLoaded("ic2");
+        /*工业升级*/
+        IC2UpgradeID = Loader.isModLoaded("industrialupgrade");
+        /*虚拟人生*/
+        MACID = Loader.isModLoaded("mca");
+        /*tetra*/
+        tetraID = Loader.isModLoaded("tetra");
+        /*冒险漩涡*/
+        MaelstromID = Loader.isModLoaded("mm");
+        /*未来MC*/
+        FuturemcID = Loader.isModLoaded("futuremc");
+        /*末影接口*/
+        enderioID = Loader.isModLoaded("enderio");
+        /*通用机械*/
+        MekanismID = Loader.isModLoaded("mekanism");
+        /*维克的现代战争*/
+        VicSWarfareID = Loader.isModLoaded("mw");
+        /*神秘时代*/
+        thaumcraftID = Loader.isModLoaded("thaumcraft");
+        /*极光幽境*/
+        TheAurorianID = Loader.isModLoaded("theaurorian");
+        /*铱矿产*/
+        iridiumsourceID = Loader.isModLoaded("iridiumsource");
+        /*交错次元*/
+        TheBetweenlandsID = Loader.isModLoaded("thebetweenlands");
+        /*热力膨胀5*/
+        thermalexpansionID = Loader.isModLoaded("thermalexpansion");
+        /*试炼更新*/
+        deeperdepthsID = Loader.isModLoaded("deeperdepths");
+        /*暮色森林*/
+        smelt = Loader.isModLoaded("twilightforest") || Loader.isModLoaded("vulcanite")
+                || Loader.isModLoaded("cofhcore") || Loader.isModLoaded("endercore")
+                || Loader.isModLoaded("tconstruct");
 
-        /*暮色森林*/if (Loader.isModLoaded("twilightforest")) {smelt = true;}
-
-        /*软碲铜*/if (Loader.isModLoaded("vulcanite")) {vulcaniteID = true;smelt = true;}
-        /*CoFH核心*/if (Loader.isModLoaded("cofhcore")) {cofhcoreID = true;smelt = true;}
-        /*末影核心*/if (Loader.isModLoaded("endercore")) {endercoreID = true;smelt = true;}
-
+        /*软碲铜*/
+        vulcaniteID = Loader.isModLoaded("vulcanite");
+        /*CoFH核心*/
+        cofhcoreID = Loader.isModLoaded("cofhcore");
+        /*末影核心*/
+        endercoreID = Loader.isModLoaded("endercore");
         //匠魂
-        if (Loader.isModLoaded("tconstruct")) {
-            TCID = true;
-            smelt = true;
-            //匠魂扩充
-            if (Loader.isModLoaded("tcomplement")) {
-                tcomplementID = true;
-            }
-        }
+        TCID = Loader.isModLoaded("tconstruct");
+        //匠魂扩充
+        tcomplementID = Loader.isModLoaded("tcomplement");
+        GalacticraftID = Loader.isModLoaded("galacticraftplanets");
+        GalaxySpaceID = Loader.isModLoaded("galaxyspace");
 
-        //星系
-        if (Loader.isModLoaded("galacticraftplanets")) {
-            GalacticraftID = true;
-            //星空
-            if (Loader.isModLoaded("galaxyspace")) {
-                GalaxySpaceID = true;
-            }
-        }
+
 
         if (!SuiKe.server) {
             //将冲突的模组ID加入'modIdStacks'列表
