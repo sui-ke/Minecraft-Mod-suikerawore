@@ -1,0 +1,117 @@
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+        configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    }
+}
+
+tasks.withType(JavaExec) {
+    environment "file.encoding", "UTF-8"
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {url 'file:///C:/Users/sui_ke/.gradle/caches/modules-2/files-2.1'}
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    //jei
+    compile name: 'jei'
+    //jer
+    compile name: 'jer'
+    //crt
+    compile name: 'crt'
+    //未来MC
+    compile name: 'FMC'
+    //工业2
+    compile name: 'ic2'
+    //工业升级
+    compile name: 'IndustrialUpgrade'
+    //星系
+    compile name: 'Galacticraft-1.12.2-4.0.6'
+    //通用机械
+    compile name: 'Mekanism'
+    //末影核心
+    compile name: 'EnderCore-1.12.2-0.5.78'
+    //末影接口
+    compile name: 'EnderIO-1.12.2-5.3.72'
+    //地幔
+    compile name: 'Mantle'
+    //匠魂
+    compile name: 'TConstruct-1.12.2-2.13.0.183'
+    //匠魂拓展
+    compile name: 'moretcon-1.11.0'
+    //匠魂补充
+    compile name: 'TinkersComplement'
+    //神秘时代
+    compile name: 'Thaumcraft-6.1'
+    //热力膨胀5
+    compile name: 'ThermalExpansion'
+    //核电工艺
+    compile name: 'nuclearcraft'
+    //交错次元
+    compile name: 'TheBetweenlands'
+}
+
+configurations.all {
+    resolutionStrategy {
+        // 不缓存动态版本
+        cacheChangingModulesFor 0, 'seconds'
+        cacheDynamicVersionsFor 0, 'seconds'
+
+        // 忽略所有模块的元数据更新
+        eachDependency { DependencyResolveDetails details ->
+            details.useVersion details.target.version
+        }
+    }
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    mappings = "snapshot_20171003"
+    makeObfSourceJar = false
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "1.0"
+group = "com.yourname.modid"
+archivesBaseName = "modid"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

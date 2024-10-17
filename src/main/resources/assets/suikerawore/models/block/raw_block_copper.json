@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "suikerawore:blocks/rawore/raw_copper_block"
+	}
+}
