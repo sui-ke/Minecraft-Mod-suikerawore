@@ -1,0 +1,101 @@
+apply from: 'gradle/scripts/helpers.gradle'
+
+repositories {
+    flatDir {
+        dirs("libs")
+    }
+    // Other repositories described by default:
+    // CleanroomMC: https://maven.cleanroommc.com
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'CurseMaven'
+                url 'https://cursemaven.com'
+            }
+        }
+        filter {
+            includeGroup 'curse.maven'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'Modrinth'
+                url 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    mavenLocal() // Must be last for caching to work
+}
+
+dependencies {
+    // Example - Dependency descriptor:
+    // 'com.google.code.gson:gson:2.8.6' << group: com.google.code.gson, name:gson, version:2.8.6
+    // 'group:name:version:classifier' where classifier is optional
+
+    // Example - Deobfuscating dependencies:
+    // rfg.deobf('curse.maven:had-enough-items-557549:4543375')
+    // By wrapping a dependency descriptor in rfg.deobf() method call, the dependency is queued for deobfuscation
+    // When deobfuscating, RFG respects the mapping_channel + mapping_version stated in gradle.properties
+
+    // Example - CurseMaven dependencies:
+    // 'curse.maven:had-enough-items-557549:4543375' << had-enough-items = project slug, 557549 = project id, 4543375 = file id
+    // Full documentation: https://cursemaven.com/
+
+    // Example - Modrinth dependencies:
+    // 'maven.modrinth:jei:4.16.1.1000' << jei = project name, 4.16.1.1000 = file version
+    // Full documentation: https://docs.modrinth.com/docs/tutorials/maven/
+
+    // Common dependency types (configuration):
+    // implementation = dependency available at both compile time and runtime
+    // runtimeOnly = runtime dependency
+    // compileOnly = compile time dependency
+    // annotationProcessor = annotation processing dependencies
+
+    // Transitive dependencies:
+    // (Dependencies that your dependency depends on)
+    // If you wish to exclude transitive dependencies in the described dependencies
+    // Use a closure as such:
+    // implementation ('com.google.code.gson:gson:2.8.6') {
+    //     transitive = false
+    // }
+
+    implementation 'curse.maven:had-enough-items-557549:4543375'//jei
+    implementation 'curse.maven:crafttweaker-239197:4534504'//crt
+    implementation 'curse.maven:future-mc-310059:5626387'//future mc
+    implementation rfg.deobf('curse.maven:industrial-craft-242638:3838713')//ic
+    implementation rfg.deobf("curse.maven:industrial-upgrade-372007:5774599")//iu
+    implementation rfg.deobf("curse.maven:galacticraft-legacy-564236:4671122")//GC  
+    implementation rfg.deobf("curse.maven:mekanism-ce-unofficial-840735:5766563")//MEK
+    implementation rfg.deobf("curse.maven:endercore-231868:4671384")//endercore
+    implementation rfg.deobf("curse.maven:ender-io-64578:4674244")//eio
+    implementation rfg.deobf("curse.maven:mantle-74924:2713386")
+    implementation rfg.deobf("curse.maven:tinkers-construct-74072:2902483")
+    implementation rfg.deobf("curse.maven:more-tcon-396545:5512567")
+    implementation rfg.deobf("curse.maven:tinkers-complement-272671:2843439")
+    implementation rfg.deobf("curse.maven:baubles-227083:2518667")
+    implementation rfg.deobf("curse.maven:thaumcraft-223628:2629023")
+    implementation rfg.deobf("curse.maven:CodeChickenLib-242818:2779848")
+    implementation rfg.deobf("curse.maven:cofh-core-69162:2920433")
+    implementation rfg.deobf("curse.maven:thermal-foundation-222880:2926428")
+    implementation rfg.deobf("curse.maven:thermal-expansion-69163:2926431")
+    implementation rfg.deobf("curse.maven:cofh-world-271384:2920434")
+    implementation rfg.deobf("curse.maven:nuclearcraft-overhauled-336895:5446445")
+    implementation rfg.deobf("curse.maven:angry-pixel-the-betweenlands-mod-243363:4479688")
+
+    implementation 'curse.maven:hwyla-253449:2568751'
+    implementation 'curse.maven:redstone-flux-270789:2920436'
+    implementation rfg.deobf('curse.maven:CTM-267602:2915363')
+    implementation 'curse.maven:the-one-probe-245211:2667280'
+    
+    implementation 'curse.maven:mixin-booter-419286:5079135'
+    implementation 'curse.maven:flux-networks-248020:3178199'
+
+    runtimeOnly 'curse.maven:ftb-library-237167:2985811'
+    runtimeOnly 'curse.maven:ftb-utilities-237102:3157548'
+    runtimeOnly 'curse.maven:had-enough-characters-640802:4035773'
+    runtimeOnly 'curse.maven:better-advancements-272515:2685984'
+}
