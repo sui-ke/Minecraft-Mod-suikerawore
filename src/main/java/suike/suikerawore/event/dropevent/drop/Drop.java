@@ -1,8 +1,8 @@
-package suike.suikerawore.event.dropmonitor.drop;
+package suike.suikerawore.event.dropevent.drop;
 
 import suike.suikerawore.item.ItemBase;
 import suike.suikerawore.config.ConfigValue;
-import suike.suikerawore.event.dropmonitor.BreakingEvent;
+import suike.suikerawore.event.dropevent.BreakingEvent;
 
 import net.minecraft.item.ItemStack;
 

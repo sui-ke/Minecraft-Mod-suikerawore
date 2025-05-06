@@ -1,4 +1,4 @@
-package suike.suikerawore.event.dropmonitor;
+package suike.suikerawore.event.dropevent;
 
 import java.io.File;
 import java.util.Set;
@@ -11,7 +11,7 @@ import suike.suikerawore.item.BlockBase;
 import suike.suikerawore.config.ConfigValue;
 import suike.suikerawore.expand.Examine;
 import suike.suikerawore.expand.mekanism.MekanismExpand;
-import suike.suikerawore.event.dropmonitor.drop.Drop;
+import suike.suikerawore.event.dropevent.drop.Drop;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.block.Block;

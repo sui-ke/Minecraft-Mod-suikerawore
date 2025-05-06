@@ -1,4 +1,4 @@
-package suike.suikerawore.event.dropmonitor.drop;
+package suike.suikerawore.event.dropevent.drop;
 
 import suike.suikerawore.item.ItemBase;
 

@@ -1,10 +1,10 @@
-package suike.suikerawore.event.dropmonitor;
+package suike.suikerawore.event.dropevent;
 
 import suike.suikerawore.item.ItemBase;
 import suike.suikerawore.item.BlockBase;
 import suike.suikerawore.expand.Examine;
-import suike.suikerawore.event.dropmonitor.BreakingEvent;
-import suike.suikerawore.event.dropmonitor.drop.ThaumcraftDrop;
+import suike.suikerawore.event.dropevent.BreakingEvent;
+import suike.suikerawore.event.dropevent.drop.ThaumcraftDrop;
 
 import suike.suikerawore.expand.ModEnchantmentHelper;
 

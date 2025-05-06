@@ -1,10 +1,10 @@
-package suike.suikerawore.event.dropmonitor.drop;
+package suike.suikerawore.event.dropevent.drop;
 
 import java.util.Map;
 import java.util.HashMap;
 
 import suike.suikerawore.item.ItemBase;
-import suike.suikerawore.event.dropmonitor.BreakingEvent;
+import suike.suikerawore.event.dropevent.BreakingEvent;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
