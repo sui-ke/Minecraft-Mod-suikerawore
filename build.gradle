@@ -1,0 +1,146 @@
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    }
+}
+
+tasks.withType(JavaExec) {
+    environment "file.encoding", "UTF-8"
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {url 'https://maven.minecraftforge.net/'}
+        // maven {url 'file:///C:/Users/sui_ke/.gradle/caches/modules-2/files-2.1'}
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile name: 'JEI'
+    compile name: 'JEI'
+    compile name: 'JER'
+    compile name: 'crt'
+    compile name: 'FMC'
+    compile name: 'ic2'
+    compile name: 'CoFHCore'
+    compile name: 'DenseMetals'
+    compile name: '星系'
+    compile name: 'libvulpes'
+    compile name: 'libvulpes-高级火箭'
+    compile name: '通用机械'
+    compile name: '通用机械-社区版'
+    compile name: '末影核心'
+    compile name: '末影接口'
+    compile name: '地幔'
+    compile name: '匠魂'
+    compile name: '匠魂拓展'
+    compile name: '匠魂补充'
+    compile name: '神秘时代6'
+    compile name: '热力膨胀5'
+    compile name: '核电工艺'
+    compile name: '交错次元'
+    compile name: '古代战争2'
+    compile name: '冶金4重铸'
+    compile name: '科技枪'
+    compile name: '格雷科技社区版'
+}
+
+configurations.all {
+    resolutionStrategy {
+        // 不缓存动态版本
+        cacheChangingModulesFor 0, 'seconds'
+        cacheDynamicVersionsFor 0, 'seconds'
+
+        // 忽略所有模块的元数据更新
+        eachDependency { DependencyResolveDetails details ->
+            details.useVersion details.target.version
+        }
+    }
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    mappings = "snapshot_20171003"
+    makeObfSourceJar = false
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+jar {
+    manifest {
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+        attributes 'FMLCorePlugin': 'suike.suikerawore.asm.ASMCoreMod'
+    }
+}
+
+version = "1.0"
+group = "com.yourname.modid"
+archivesBaseName = "modid"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+task postCompileReplace {
+    dependsOn compileJava
+    doLast {
+        println "编译完成, 开始替换class文件..."
+
+        // 获取包路径
+        def targetDir = file("$buildDir/classes/main/suike/suikerawore/expand/enderio")
+
+        // 复制并替换文件
+        ['SagMillRecipeRegister.class', 'SagMillRecipeRegisterOld.class'].each { className ->
+            def sourceFile = file("class/$className")
+            def targetFile = new File(targetDir, className)
+
+            if (sourceFile.exists()) {
+                sourceFile.withInputStream { input ->
+                    targetFile.withOutputStream { output ->
+                        output << input
+                    }
+                }
+                println "已复制: $className (${sourceFile.length()} bytes) -> $targetDir"
+            } else {
+                println "警告: 源文件不存在 - class/$className"
+            }
+        }
+    }
+}
+
+// 添加到构建流程
+classes.dependsOn postCompileReplace
